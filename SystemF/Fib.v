@@ -45,3 +45,21 @@ End fib.
 Definition isOpFib {E B} (p : (E –≻ B)%functor) := isFib (p ^op).
 
 Definition isBiFib {E B} (p : (E –≻ B)%functor) := (isFib p * isOpFib p)%type.
+
+Record Fibration (E B : Category) :=
+  {
+    FibFunc :> Functor E B;
+    FibFunc_isFib : isFib FibFunc
+  }.
+
+Record OpFibration (E B : Category) :=
+  {
+    OpFibFunc :> Functor E B;
+    OpFibFunc_isOpFib : isOpFib OpFibFunc
+  }.
+
+Record BiFibration (E B : Category) :=
+  {
+    BiFibFunc :> Functor E B;
+    BiFibFunc_isBiFib : isBiFib BiFibFunc
+  }.
